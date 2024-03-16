@@ -1,7 +1,5 @@
 # Simon
 
----
-
 ### Note
 
 Le but de ce projet est de programmer le jeu de société [Simon](<https://fr.wikipedia.org/wiki/Simon_(jeu)>). Le jeu crée une séquence de couleurs (rouge, vert, bleu, jaune) et l'utilisateur doit reproduire la séquence. Le programme recommence alors en ajoutant une couleur à la séquence en boucle jusqu'à ce que l'utilisateur se trompe.
