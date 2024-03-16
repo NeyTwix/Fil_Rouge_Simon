@@ -14,4 +14,3 @@ try:
     from assets import scores
 except Exception as e:
     print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\n\n\033[0m")
-    
