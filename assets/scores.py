@@ -6,7 +6,7 @@ except Exception as e:
 with open('assets/scores.csv', newline='', encoding='utf-8') as csvfile:
     saved_scores = list(csv.DictReader(csvfile, delimiter=';'))
 
-scores_to_save = saved_scores + [{"nom": "MOI", "score": "15645"}, {"nom": "L'autre", "score": "15645"}]
+scores_to_save = saved_scores + [{"nom": "Player", "score": "0"}, {"nom": "player", "score": "1"}]
 
 print(scores_to_save)
 
