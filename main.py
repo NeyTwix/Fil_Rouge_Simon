@@ -6,5 +6,5 @@ except Exception as e:
 try:
     from assets import game
 except Exception as e:
-    print(f"\n\n\033[91mFile /assets/menu.py Not Found\nPlease make sure you have all file an folder in the right order.\n\n\033[0m")
+    print(f"\n\n\033[91mFile /assets/game.py Not Found\nPlease make sure you have all file an folder in the right order.\n\n\033[0m")
     exit()

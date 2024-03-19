@@ -7,9 +7,9 @@ except Exception as e:
     print(f"\n\n\033[91mModule pygame, pygame_menu or random Not Found\nPlease make sure you have installed all module before launching this file again.\n\n\033[0m")
     exit()
 try:
-    import scores
+    from assets import scores
 except Exception as e:
-    print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\n\n\033[0m")
+    print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\033[0m\nDEBUG : {e}\n\n")
     exit()
 
 # Init PyGame and Windows Game
@@ -29,15 +29,24 @@ try:
     simon_Theme.background_color = baseimage.BaseImage(load_from_file=True, image_path=image_Path, drawing_mode=baseimage.IMAGE_MODE_FILL, drawing_offset=(0,0) )
 except Exception as e:
     print(f"\n\n\033[91mFile {image_Path} Not Found\nPlease make sure you have all file an folder in the right order.\n\n\033[0m")
+    exit()
 
-
-def set_mode(value, difficulty):
-    print(value)
-    print(difficulty)
+def set_mode(value, gamemode):
+    #print(value)
+    global mode
+    mode=gamemode
+    return mode
  
 def start_the_game():
-    print("test")
-    pass
+    print("start game")
+    if mode == 1:
+        print("Classic")
+    elif mode==2:
+        print("Inverted")
+    elif mode==3:
+        print("Multi")
+    else:
+        print("Nothing change")
 
 def mode_menu():
     mainmenu._open(gamemode)
@@ -45,12 +54,11 @@ def mode_menu():
 # Main menu
 mainmenu = pygame_menu.Menu('Simon', x, y, theme=simon_Theme)
 mainmenu.add.button('Start', mode_menu)
-#mainmenu.add.text_input('', default='Player', maxchar=20)
 mainmenu.add.button('Quitter', pygame_menu.events.EXIT)
 
 gamemode = pygame_menu.Menu('Select a Difficulty', x, y, theme=themes.THEME_DARK)
 gamemode.add.selector('',[('Classic',1),('Reverse',2),('MultiPlayer',3)], onchange=set_mode)
-gamemode.add.button('Start', mode_menu)
+gamemode.add.button('Start', start_the_game)
 gamemode.add.button('Return', pygame_menu.events.BACK)
 
 
