@@ -2,15 +2,22 @@
 try:
     import pygame, pygame_menu
     from pygame_menu import themes,font,baseimage
+    from random import randint
 except Exception as e:
-    print(f"\n\n\033[91mModule pygame or pygame_menu Not Found\nPlease make sure you have installed all module before launching this file again.\n\n\033[0m")
+    print(f"\n\n\033[91mModule pygame, pygame_menu or random Not Found\nPlease make sure you have installed all module before launching this file again.\n\n\033[0m")
+    exit()
+try:
+    import scores
+except Exception as e:
+    print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\n\n\033[0m")
+    exit()
 
 # Init PyGame and Windows Game
 pygame.init()
 surface = pygame.display.set_mode()
 pygame.display.toggle_fullscreen()
 x, y = pygame.display.get_window_size()
-
+debug="TEXT DEBUG"
 # Theme Params
 simon_Theme = themes.THEME_DARK.copy()
 simon_Theme.title_font = font.FONT_MUNRO
@@ -29,16 +36,22 @@ def set_mode(value, difficulty):
     print(difficulty)
  
 def start_the_game():
+    print("test")
     pass
+
+def mode_menu():
+    mainmenu._open(gamemode)
 
 # Main menu
 mainmenu = pygame_menu.Menu('Simon', x, y, theme=simon_Theme)
-mainmenu.add.button('Start', start_the_game)
-mainmenu.add.text_input('', default='Player', maxchar=20)
-mainmenu.add.selector('',[('Classic',1),('Reverse',2),('MultiPlayer',3)], onchange=set_mode)
+mainmenu.add.button('Start', mode_menu)
+#mainmenu.add.text_input('', default='Player', maxchar=20)
 mainmenu.add.button('Quitter', pygame_menu.events.EXIT)
-mainmenu.add.label('TEST')
- 
+
+gamemode = pygame_menu.Menu('Select a Difficulty', x, y, theme=themes.THEME_DARK)
+gamemode.add.selector('',[('Classic',1),('Reverse',2),('MultiPlayer',3)], onchange=set_mode)
+gamemode.add.button('Start', mode_menu)
+gamemode.add.button('Return', pygame_menu.events.BACK)
 
 
 while True:
@@ -50,5 +63,6 @@ while True:
     if mainmenu.is_enabled():
         mainmenu.update(events)
         mainmenu.draw(surface)
+        
  
     pygame.display.update()
