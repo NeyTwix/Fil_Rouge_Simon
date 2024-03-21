@@ -36,7 +36,8 @@ def set_mode(value, gamemode):
     global mode
     mode=gamemode
     return mode
- 
+
+
 def start_the_game():
     print("start game")
     if mode == 1:
