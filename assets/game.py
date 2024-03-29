@@ -9,15 +9,17 @@ except Exception as e:
 try:
     from assets import scores
 except Exception as e:
-    print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\033[0m\nDEBUG : {e}\n\n")
-    exit()
+    try:
+        import scores
+    except Exception as e:
+        print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\033[0m\nDEBUG : {e}\n\n")
+        exit()
 
 # Init PyGame and Windows Game
 pygame.init()
 surface = pygame.display.set_mode()
 pygame.display.toggle_fullscreen()
 x, y = pygame.display.get_window_size()
-debug="TEXT DEBUG"
 # Theme Params
 simon_Theme = themes.THEME_DARK.copy()
 simon_Theme.title_font = font.FONT_MUNRO
@@ -56,6 +58,16 @@ def mode_menu():
 mainmenu = pygame_menu.Menu('Simon', x, y, theme=simon_Theme)
 mainmenu.add.button('Start', mode_menu)
 mainmenu.add.button('Quitter', pygame_menu.events.EXIT)
+
+table = mainmenu.add.table(table_id='score', font_size=20,float=True,float_origin_position=True)
+table.default_cell_padding = 5
+table.border_color="None"
+
+score = scores.high_score(scores.export_score())
+for entry in score:
+    table.add_row([entry['score'], entry['nom']])
+    
+print(scores.high_score(scores.export_score()))
 
 gamemode = pygame_menu.Menu('Select a Difficulty', x, y, theme=themes.THEME_DARK)
 gamemode.add.selector('',[('Classic',1),('Reverse',2),('MultiPlayer',3)], onchange=set_mode)

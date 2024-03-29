@@ -12,7 +12,34 @@ def export_score():
     """
     with open('assets/scores.csv', newline='', encoding='utf-8') as csvfile:
         exported_scores = list(csv.DictReader(csvfile, delimiter=';'))
-    return exported_scores
+
+    def get_score(item):
+        return int(item['score'])
+    sorted_data = sorted(exported_scores, key=get_score, reverse=True)
+
+    return sorted_data
+
+def high_score(list):
+    """
+    Extracts the first five elements from a list and returns them in a new list.
+
+    Args:
+        list (list): A list containing the elements to extract.
+
+    Returns:
+        list: A new list containing the first five elements from the original list.
+
+    Example:
+        >>> original_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        >>> result = high_score(original_list)
+        >>> print(result)
+        [1, 2, 3, 4, 5]
+    """
+    if len(list) >=5:
+        new_list = list[:5]
+    else:
+        new_list = list[:len(list)-1]
+    return new_list
 
 
 def write_score(scores_to_save):
