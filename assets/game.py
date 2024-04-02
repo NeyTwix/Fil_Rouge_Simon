@@ -14,6 +14,16 @@ except Exception as e:
     except Exception as e:
         print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\033[0m\nDEBUG : {e}\n\n")
         exit()
+try:
+    from assets import color
+except Exception as e:
+    try:
+        import color 
+    except Exception as e:
+        print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\033[0m\nDEBUG : {e}\n\n")
+        exit()
+
+
 
 # Init PyGame and Windows Game
 pygame.init()
@@ -32,7 +42,7 @@ try:
 except Exception as e:
     print(f"\n\n\033[91mFile {image_Path} Not Found\nPlease make sure you have all file an folder in the right order.\n\n\033[0m")
     exit()
-
+mode = 1
 def set_mode(value, gamemode):
     #print(value)
     global mode
@@ -41,7 +51,10 @@ def set_mode(value, gamemode):
 
 
 def start_the_game():
+    pygame_menu.events.CLOSE
+    #color.basic_Game()
     print("start game")
+
     if mode == 1:
         print("Classic")
     elif mode==2:
@@ -50,6 +63,7 @@ def start_the_game():
         print("Multi")
     else:
         print("Nothing change")
+
 
 def mode_menu():
     mainmenu._open(gamemode)
