@@ -90,5 +90,4 @@ while True:
         mainmenu.update(events)
         mainmenu.draw(surface)
         
- 
     pygame.display.update()
