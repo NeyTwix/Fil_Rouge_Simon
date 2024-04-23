@@ -20,7 +20,7 @@ except Exception as e:
     try:
         import assets.game as game
     except Exception as e:
-        print(f"\n\n\033[91mFile /assets/scores.py Not Found\nPlease make sure you have all file an folder in the right order.\033[0m\nDEBUG : {e}\n\n")
+        print(f"\n\n\033[91mFile /assets/game.py Not Found\nPlease make sure you have all file an folder in the right order.\033[0m\nDEBUG : {e}\n\n")
         exit()
 
 
@@ -51,7 +51,7 @@ def set_mode(value, gamemode):
 
 
 def start_the_game():
-    pygame_menu.events.CLOSE
+    #pygame_menu.events.CLOSE
     game.basic_Game(mode)
     print("start game")
 
