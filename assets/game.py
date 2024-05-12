@@ -38,4 +38,4 @@ def basic_Game(p_gamemode=1):
         pygame.display.flip()
 
 # DEBUG
-basic_Game()
+#basic_Game()
