@@ -1,8 +1,6 @@
 # pygame setup
 try:
-    import pygame
-    from random import randint
-    import sys
+    import pygame, random, sys
 except Exception as e:
     print(f"\n\n\033[91mModule pygame, sys or random Not Found\nPlease make sure you have installed all module before launching this file again.\n\n\033[0m")
     exit()
@@ -16,6 +14,11 @@ def basic_Game(p_gamemode=1):
     c_largeur, c_hauteur = largeur // 2, hauteur // 2
     
     while True:
+        bouton_bleu = pygame.draw.rect(fenetre, bleu, (c_largeur, c_hauteur, c_largeur, c_hauteur))
+        bouton_jaune = pygame.draw.rect(fenetre, jaune, (0, c_hauteur, c_largeur, c_hauteur))
+        bouton_rouge = pygame.draw.rect(fenetre, rouge, (c_largeur, 0, c_largeur, c_hauteur))
+        bouton_vert = pygame.draw.rect(fenetre, vert, (0, 0, c_largeur, c_hauteur))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -30,12 +33,8 @@ def basic_Game(p_gamemode=1):
                 elif bouton_vert.collidepoint(event.pos):
                     print("Vert cliqué !")
 
-        bouton_bleu = pygame.draw.rect(fenetre, bleu, (c_largeur, c_hauteur, c_largeur, c_hauteur))
-        bouton_jaune = pygame.draw.rect(fenetre, jaune, (0, c_hauteur, c_largeur, c_hauteur))
-        bouton_rouge = pygame.draw.rect(fenetre, rouge, (c_largeur, 0, c_largeur, c_hauteur))
-        bouton_vert = pygame.draw.rect(fenetre, vert, (0, 0, c_largeur, c_hauteur))
 
         pygame.display.flip()
 
 # DEBUG
-#basic_Game()
+basic_Game()
